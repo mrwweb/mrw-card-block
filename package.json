@@ -1,0 +1,19 @@
+{
+  "name": "wcaap",
+  "version": "1.0.0",
+  "description": "Build process for WCAAP.org website theme",
+  "author": "Mark Root-Wiley, MRW Web Design",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "autoprefixer": "^9.8.6",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.2",
+    "postcss": "^7.0.32"
+  }
+}
