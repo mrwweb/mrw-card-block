@@ -12,6 +12,9 @@
 
 namespace MRW\CardBlock;
 
+require_once( 'github-updater/github-updater.php' );
+use WP_GitHub_Updater;
+
 define( 'MRW_CARD_BLOCK_VERSION', '0.2.0' );
 
 add_action( 'wp_enqueue_scripts', 'MRW\CardBlock\front_end_assets', 9 );
