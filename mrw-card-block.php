@@ -5,7 +5,7 @@
  * Author:          Mark Root-Wiley, MRW Web Design
  * Author URI:      https://MRWweb.com
  * Text Domain:     mrw-card-block
- * Version:         0.2.0
+ * Version:         0.2.1
  *
  * @package         Mrw_Card_Block
  */
