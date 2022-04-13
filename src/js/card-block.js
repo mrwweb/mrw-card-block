@@ -21,8 +21,8 @@ wp.domReady( function() {
 				align: ''
 			},
 			innerBlocks: [
-				[ 'core/heading', { fontSize: 'medium', 'level': 3 } ],
-				[ 'core/paragraph', { fontSize: 'small' } ],
+				[ 'core/heading', { 'level': 3 } ],
+				[ 'core/paragraph' ],
 			],
 			isActive: (blockAttributes) => blockAttributes.className?.includes('mrw-card-block'),
 		}
