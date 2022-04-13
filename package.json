@@ -1,7 +1,7 @@
 {
-  "name": "wcaap",
+  "name": "mrw-card-block",
   "version": "1.0.0",
-  "description": "Build process for WCAAP.org website theme",
+  "description": "Build Process for Card Block Style Variation",
   "author": "Mark Root-Wiley, MRW Web Design",
   "devDependencies": {
     "@babel/core": "^7.11.1",
