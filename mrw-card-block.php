@@ -5,9 +5,9 @@
  * Author:          Mark Root-Wiley, MRW Web Design
  * Author URI:      https://MRWweb.com
  * Text Domain:     mrw-card-block
- * Version:         0.2.0
+ * Version:         0.3.0
  *
- * @package         Mrw_Card_Block
+ * @package         MRW_Card_Block
  */
 
 namespace MRW\CardBlock;
@@ -15,7 +15,7 @@ namespace MRW\CardBlock;
 require_once( 'github-updater/github-updater.php' );
 use WP_GitHub_Updater;
 
-define( 'MRW_CARD_BLOCK_VERSION', '0.2.0' );
+define( 'MRW_CARD_BLOCK_VERSION', '0.3.0' );
 
 add_filter( 'after_setup_theme', __NAMESPACE__ . '\register_block_styles' );
 function register_block_styles() {
