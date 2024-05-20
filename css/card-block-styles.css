@@ -16,10 +16,10 @@
 }
 
 .wp-block-media-text.mrw-card-block .wp-block-media-text__content {
-	padding: 0;
+	padding: var(--mrw-card--content-padding) 0 0;
 }
 
 .wp-block-media-text.mrw-card-block.has-background
 	.wp-block-media-text__content {
-	padding: var(--wp--preset--spacing--40, 8%);
+	padding: var(--mrw-card--content-padding);
 }
