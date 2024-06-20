@@ -9,8 +9,7 @@
 		"@wordpress/scripts": "^27.9.0"
 	},
 	"scripts": {
-		"start": "wp-scripts start src/js/card-block.js --output-path=js --output-filename=card-block.js",
-		"build": "wp-scripts start src/js/card-block.js --output-path=js --output-filename=card-block.js"
+		"start": "wp-scripts start src/js/card-block.js --output-path=js --output-filename=card-block.js"
 	},
 	"browserslist": [
 		"> 1%",
