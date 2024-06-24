@@ -2,6 +2,16 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
 /***/ "@wordpress/blocks":
 /*!********************************!*\
   !*** external ["wp","blocks"] ***!
@@ -9,6 +19,56 @@
 /***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/compose":
+/*!*********************************!*\
+  !*** external ["wp","compose"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["compose"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/hooks":
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["hooks"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
 
 /***/ })
 
@@ -89,10 +149,137 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
 
+
+
+
+
+
+
+
+/**
+ * Register the Attribute
+ *
+ * @param {Object} settings
+ */
+function addCardAttributes(settings) {
+  const {
+    name
+  } = settings;
+  if ('core/media-text' === name) {
+    settings.attributes = Object.assign({}, settings.attributes, {
+      aspectRatio: {
+        type: 'string'
+      }
+    });
+  }
+  return settings;
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('blocks.registerBlockType', 'mrw-card-block/add-card-attributes', addCardAttributes);
+
+/**
+ * Add the controls in the sidebar
+ */
+const addCardControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.createHigherOrderComponent)(BlockEdit => {
+  return props => {
+    const {
+      attributes: {
+        className,
+        aspectRatio
+      },
+      setAttributes,
+      name
+    } = props;
+    const [defaultAspectRatios, globalAspectRatios] = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useSettings)('dimensions.defaultAspectRatios', 'dimensions.aspectRatios');
+    if (name !== 'core/media-text' || !className?.includes('mrw-card-block') || !defaultAspectRatios && globalAspectRatios.length === 0) {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+        ...props
+      });
+    }
+    const aspectRatioOptions = globalAspectRatios.map(ratio => {
+      return {
+        label: ratio.name,
+        value: ratio.ratio
+      };
+    });
+    aspectRatioOptions.unshift({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Original'),
+      value: ''
+    });
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+      ...props
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
+      group: "settings"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Image Aspect Ratio', 'mrw-card-block'),
+      value: aspectRatio,
+      options: aspectRatioOptions,
+      onChange: value => {
+        setAttributes({
+          aspectRatio: validateRatio(value)
+        });
+      },
+      className: "aspect-ratio-control"
+    })));
+  };
+}, 'addCardControls');
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockEdit', 'mrw-card-block/add-card-controls', addCardControls);
+
+/**
+ * Add CSS classes to the block in the editor (but not the save object to avoid issues with block validation)
+ */
+const addCardStyles = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.createHigherOrderComponent)(BlockListBlock => {
+  return props => {
+    const {
+      attributes: {
+        className,
+        aspectRatio
+      },
+      name
+    } = props;
+    if (!className?.includes('mrw-card-block') || name !== 'core/media-text' || aspectRatio === '') {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, {
+        ...props
+      });
+    }
+    const styles = {
+      '--mrw-card--ratio': aspectRatio
+    };
+    const wrapperProps = {
+      ...props.wrapperProps,
+      style: styles
+    };
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockListBlock, {
+      ...props,
+      wrapperProps: wrapperProps
+    });
+  };
+}, 'addCardStyles');
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockListBlock', 'mrw-card-block/card-block-styles', addCardStyles);
+function validateRatio(ratio) {
+  const ratioRegex = /([0-9]{1,4})\/([0-9]{1,4})/;
+  const match = ratio.match(ratioRegex);
+  if (ratio === '1' || match.length > 0 && match[0] === ratio) {
+    return ratio;
+  }
+  return '';
+}
+
+/* Register the Variation */
 wp.domReady(function () {
-  // Import the element creator function (React abstraction layer)
-  const el = wp.element.createElement;
+  const el = _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement;
   const cardIcon = el('svg', {
     width: 24,
     height: 24

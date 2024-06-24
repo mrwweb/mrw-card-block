@@ -1,20 +1,27 @@
 === MRW Card Block ===
 Contributors: mrwweb
 Tags: Block, Blocks, Card, Block Editor, Gutenberg
-Requires at least: 4.5
-Tested up to: 5.8
-Requires PHP: 5.6
-Stable tag: 0.3.0
+Requires at least: 6.6
+Tested up to: 6.6
+Requires PHP: 7.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A block variation of the Media & Text block that creates a "Card" block with stacked media and content.
+A variation of the Media & Text block that creates a "Card" with stacked media and content.
 
 == Description ==
 
-A block variation of the Media & Text block that creates a "Card" block with stacked media and content.
+A variation of the Media & Text block that creates a "Card" with stacked media and content. This plugin adds support for aspect ratio for the image. Since it is a block variation, uninstalling the plugin will just have the cards fall back to Media & Text blocks, preserving all content.
 
 == Changelog ==
+
+= 0.4.0 (June 24, 2024) =
+
+- Add support for aspect ratios using WordPress defaults or whatever is defined in theme.json
+- Change default min-height for image to 0px so aspect ratios always work. Can set easily in CSS with `--mrw-card--min-height` custom property
+- Remove gulp build process and replace with wp-scripts
+- Now requires PHP 7.0 and WordPress 6.6+ (currently in Beta 3)
 
 = 0.3.0 (May 20, 2024) =
 
@@ -35,6 +42,9 @@ A block variation of the Media & Text block that creates a "Card" block with sta
 - First version
 
 == Upgrade Notice ==
+
+= 0.4.0 =
+Requires WordPress 6.6! Adds aspect ratio support!
 
 = 0.2.0 =
 Hide image drag handle

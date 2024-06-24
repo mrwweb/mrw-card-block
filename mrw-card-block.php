@@ -1,11 +1,14 @@
 <?php
 /**
  * Plugin Name:     MRW Card Block Variation
- * Description:     Register a Variation of the Media & Text block that acts as a "Card"
+ * Description:     A variation of the Media & Text block that acts as a "Card"
  * Author:          Mark Root-Wiley, MRW Web Design
  * Author URI:      https://MRWweb.com
+ * Requires at least: 6.6
+ * Requires PHP: 	7.0
  * Text Domain:     mrw-card-block
- * Version:         0.3.0
+ * Version:         0.4.0
+ * Plugin URI: 		https://github.com/mrwweb/mrw-card-block
  *
  * @package         MRW_Card_Block
  */
@@ -15,7 +18,7 @@ namespace MRW\CardBlock;
 require_once( 'github-updater/github-updater.php' );
 use WP_GitHub_Updater;
 
-define( 'MRW_CARD_BLOCK_VERSION', '0.3.0' );
+define( 'MRW_CARD_BLOCK_VERSION', '0.4.0' );
 
 add_filter( 'after_setup_theme', __NAMESPACE__ . '\register_block_styles' );
 function register_block_styles() {
@@ -51,6 +54,28 @@ function editor_assets() {
 	}
 }
 
+add_filter( 'render_block', __NAMESPACE__ . '\render_card_block', 10, 2 );
+/**
+ * Modify the Media & Text output to use the Card Block aspect ratio, if set
+ *
+ * @param string $block_content block's HTML
+ * @param array $block all properties of the block
+ * @return void
+ */
+function render_card_block( $block_content, $block ) {
+	$classes = $block['attrs']['className'] ?? '';
+	$ratio = $block['attrs']['aspectRatio'] ?? '';
+	
+	if (
+		'core/media-text' === $block['blockName'] &&
+		str_contains( $classes, 'mrw-card-block' ) &&
+		! empty( $ratio )
+	) {
+		$block_content = str_replace( 'class="wp-block-media-text ', 'style="--mrw-card--ratio:' . esc_attr($ratio) . '" class="wp-block-media-text ', $block_content );
+	}
+	return $block_content;
+}
+
 // Initialize the plugin updater
 if ( is_admin() ) {
 	$config = array(
@@ -61,8 +86,8 @@ if ( is_admin() ) {
 		'github_url' => 'https://github.com/mrwweb/mrw-card-block',
 		'zip_url' => 'https://github.com/mrwweb/mrw-card-block/archive/refs/heads/main.zip',
 		'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
-		'requires' => '5.0',
-		'tested' => '5.8',
+		'requires' => '6.6',
+		'tested' => '6.6',
 		'readme' => 'readme.txt',
 	);
 	new WP_GitHub_Updater($config);

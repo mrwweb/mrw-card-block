@@ -1,3 +1,7 @@
 :root .mrw-card-block .components-resizable-box__handle {
 	display: none;
 }
+
+.aspect-ratio-control {
+	padding: 0 16px 16px;
+}

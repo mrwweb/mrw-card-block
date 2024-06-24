@@ -1,6 +1,6 @@
 :root {
 	--mrw-card--ratio: 16/9;
-	--mrw-card--min-height: 150px;
+	--mrw-card--min-height: 0px;
 	--mrw-card--content-padding: var(--wp--preset--spacing--40, 8%);
 }
 
