@@ -269,12 +269,15 @@ const addCardStyles = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.createH
 }, 'addCardStyles');
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_2__.addFilter)('editor.BlockListBlock', 'mrw-card-block/card-block-styles', addCardStyles);
 function validateRatio(ratio) {
+  if (ratio === '') {
+    return undefined;
+  }
   const ratioRegex = /([0-9]{1,4})\/([0-9]{1,4})/;
   const match = ratio.match(ratioRegex);
-  if (ratio === '1' || match.length > 0 && match[0] === ratio) {
+  if (ratio === '1' || match && match.length > 0 && match[0] === ratio) {
     return ratio;
   }
-  return '';
+  return undefined;
 }
 
 /* Register the Variation */

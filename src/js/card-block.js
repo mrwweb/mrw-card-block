@@ -51,7 +51,6 @@ const addCardControls = createHigherOrderComponent((BlockEdit) => {
 		) {
 			return <BlockEdit {...props} />;
 		}
-
 		const aspectRatioOptions = globalAspectRatios.map((ratio) => {
 			return {
 				label: ratio.name,
@@ -124,12 +123,17 @@ addFilter(
 );
 
 function validateRatio(ratio) {
+	if (ratio === '') {
+		return undefined;
+	}
+
 	const ratioRegex = /([0-9]{1,4})\/([0-9]{1,4})/;
 	const match = ratio.match(ratioRegex);
-	if (ratio === '1' || (match.length > 0 && match[0] === ratio)) {
+
+	if (ratio === '1' || (match && match.length > 0 && match[0] === ratio)) {
 		return ratio;
 	}
-	return '';
+	return undefined;
 }
 
 /* Register the Variation */
