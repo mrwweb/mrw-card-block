@@ -5,3 +5,7 @@
 .aspect-ratio-control {
 	padding: 0 16px 16px;
 }
+
+.wp-block-media-text.mrw-card-block.is-image-fill .wp-block-media-text__media {
+	height: auto !important;
+}
