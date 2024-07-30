@@ -4,7 +4,7 @@ Tags: Block, Blocks, Card, Block Editor, Gutenberg
 Requires at least: 6.6
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,11 @@ A variation of the Media & Text block that creates a "Card" with stacked media a
 A variation of the Media & Text block that creates a "Card" with stacked media and content. This plugin adds support for aspect ratio for the image. Since it is a block variation, uninstalling the plugin will just have the cards fall back to Media & Text blocks, preserving all content.
 
 == Changelog ==
+
+= 0.4.1 (June 28, 2024) =
+
+- Fix support for "Original" aspect ratio
+- Fix card block when used in Grid Group block variation
 
 = 0.4.0 (June 24, 2024) =
 
@@ -43,7 +48,7 @@ A variation of the Media & Text block that creates a "Card" with stacked media a
 
 == Upgrade Notice ==
 
-= 0.4.0 =
+= 0.4.1 =
 Requires WordPress 6.6! Adds aspect ratio support!
 
 = 0.2.0 =
