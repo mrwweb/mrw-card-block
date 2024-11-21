@@ -7,7 +7,7 @@
  * Requires at least: 6.6
  * Requires PHP: 	7.0
  * Text Domain:     mrw-card-block
- * Version:         0.4.1
+ * Version:         0.4.2
  * Plugin URI: 		https://github.com/mrwweb/mrw-card-block
  *
  * @package         MRW_Card_Block
