@@ -6,6 +6,7 @@
 .eslintignore
 .eslintrc
 .git
+.github
 .gitignore
 .gitlab-ci.yml
 .travis.yml
@@ -39,3 +40,4 @@ node_modules
 *.sql
 *.tar.gz
 *.zip
+src
