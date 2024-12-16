@@ -4,7 +4,7 @@ Tags: Block, Blocks, Media & Text, Card, Block Editor
 Requires at least: 6.6
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,11 @@ A variation of the Media & Text block that creates a "Card" with stacked media a
 A variation of the Media & Text block that creates a "Card" with stacked media and content. This plugin adds support for the aspect ratio of the image. Since it is a block variation, uninstalling the plugin will just have the cards fall back to Media & Text blocks, preserving all content.
 
 == Changelog ==
+
+= 0.4.3 (December 16, 2024) =
+
+- Load Github updater on `admin_init` hook to prevent "`_load_textdomain_just_in_time` was called incorrectly" error introduced with WordPress 6.7
+- Remove duplicate require_once statement loading Github updater
 
 = 0.4.2 (November 21, 2024) =
 

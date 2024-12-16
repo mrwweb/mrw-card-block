@@ -7,7 +7,7 @@
  * Requires at least: 6.6
  * Requires PHP: 	7.0
  * Text Domain:     mrw-card-block
- * Version:         0.4.2
+ * Version:         0.4.3
  * Plugin URI: 		https://github.com/mrwweb/mrw-card-block
  *
  * @package         MRW_Card_Block
@@ -18,7 +18,7 @@ namespace MRW\CardBlock;
 require_once( 'github-updater/github-updater.php' );
 use WP_GitHub_Updater;
 
-define( 'MRW_CARD_BLOCK_VERSION', '0.4.1' );
+define( 'MRW_CARD_BLOCK_VERSION', '0.4.3' );
 
 add_filter( 'after_setup_theme', __NAMESPACE__ . '\register_block_styles' );
 function register_block_styles() {
@@ -77,20 +77,20 @@ function render_card_block( $block_content, $block ) {
 }
 
 // Initialize the plugin updater
-if ( is_admin() ) {
-	$config = array(
-		'slug' => plugin_basename(__FILE__),
-		'proper_folder_name' => 'mrw-card-block',
-		'api_url' => 'https://github.com/mrwweb/mrw-card-block',
-		'raw_url' => 'https://raw.githubusercontent.com/mrwweb/mrw-card-block/main',
-		'github_url' => 'https://github.com/mrwweb/mrw-card-block',
-		'zip_url' => 'https://github.com/mrwweb/mrw-card-block/archive/refs/heads/main.zip',
-		'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
-		'requires' => '6.6',
-		'tested' => '6.6',
-		'readme' => 'readme.txt',
-	);
-	new WP_GitHub_Updater($config);
-}
-
-require_once( 'github-updater/github-updater.php' );
+add_action( 'admin_init', function() {
+	if ( is_admin() ) {
+		$config = array(
+			'slug' => plugin_basename(__FILE__),
+			'proper_folder_name' => 'mrw-card-block',
+			'api_url' => 'https://github.com/mrwweb/mrw-card-block',
+			'raw_url' => 'https://raw.githubusercontent.com/mrwweb/mrw-card-block/main',
+			'github_url' => 'https://github.com/mrwweb/mrw-card-block',
+			'zip_url' => 'https://github.com/mrwweb/mrw-card-block/archive/refs/heads/main.zip',
+			'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+			'requires' => '6.6',
+			'tested' => '6.6',
+			'readme' => 'readme.txt',
+		);
+		new WP_GitHub_Updater($config);
+	}
+} );
