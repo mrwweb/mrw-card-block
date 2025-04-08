@@ -1,10 +1,10 @@
+import { InspectorControls, useSettings } from '@wordpress/block-editor';
 import { registerBlockVariation } from '@wordpress/blocks';
+import { SelectControl } from '@wordpress/components';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import { createElement, Fragment } from '@wordpress/element';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { InspectorControls, useSettings } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
 
 /**
  * Register the Attribute
@@ -57,7 +57,7 @@ const addCardControls = createHigherOrderComponent((BlockEdit) => {
 				value: ratio.ratio,
 			};
 		});
-		aspectRatioOptions.unshift({ label: __('Original'), value: '' });
+		aspectRatioOptions.unshift({ label: __('Original', 'mrw-card-block'), value: '' });
 
 		return (
 			<Fragment>
