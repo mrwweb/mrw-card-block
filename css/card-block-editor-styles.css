@@ -2,6 +2,10 @@
 	display: none;
 }
 
+.mrw-card-block .wp-block-media-text__media.components-placeholder {
+	min-height: auto !important;
+}
+
 .aspect-ratio-control {
 	padding: 0 16px 16px;
 }
