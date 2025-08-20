@@ -35,7 +35,7 @@ addFilter(
 const addCardControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		const {
-			attributes: { className, aspectRatio },
+			attributes: { className, aspectRatio, imageFill },
 			setAttributes,
 			name,
 		} = props;
@@ -47,7 +47,8 @@ const addCardControls = createHigherOrderComponent((BlockEdit) => {
 		if (
 			name !== 'core/media-text' ||
 			!className?.includes('mrw-card-block') ||
-			(!defaultAspectRatios && globalAspectRatios.length === 0)
+			(!defaultAspectRatios && globalAspectRatios.length === 0) ||
+			!imageFill
 		) {
 			return <BlockEdit {...props} />;
 		}
@@ -57,7 +58,10 @@ const addCardControls = createHigherOrderComponent((BlockEdit) => {
 				value: ratio.ratio,
 			};
 		});
-		aspectRatioOptions.unshift({ label: __('Original'), value: '' });
+		aspectRatioOptions.unshift({
+			label: __('Default', 'mrw-card-block'),
+			value: '',
+		});
 
 		return (
 			<Fragment>
@@ -160,7 +164,6 @@ wp.domReady(function () {
 			align: '',
 		},
 		innerBlocks: [['core/heading', { level: 3 }], ['core/paragraph']],
-		isActive: (blockAttributes) =>
-			blockAttributes.className?.includes('mrw-card-block'),
+		isActive: (attrs) => attrs.className?.includes('mrw-card-block'),
 	});
 });

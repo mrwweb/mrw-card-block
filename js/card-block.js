@@ -141,7 +141,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
 /*!******************************!*\
   !*** ./src/js/card-block.js ***!
@@ -197,13 +197,14 @@ const addCardControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.creat
     const {
       attributes: {
         className,
-        aspectRatio
+        aspectRatio,
+        imageFill
       },
       setAttributes,
       name
     } = props;
     const [defaultAspectRatios, globalAspectRatios] = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useSettings)('dimensions.defaultAspectRatios', 'dimensions.aspectRatios');
-    if (name !== 'core/media-text' || !className?.includes('mrw-card-block') || !defaultAspectRatios && globalAspectRatios.length === 0) {
+    if (name !== 'core/media-text' || !className?.includes('mrw-card-block') || !defaultAspectRatios && globalAspectRatios.length === 0 || !imageFill) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
         ...props
       });
@@ -215,7 +216,7 @@ const addCardControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.creat
       };
     });
     aspectRatioOptions.unshift({
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Original'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Default', 'mrw-card-block'),
       value: ''
     });
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
@@ -304,7 +305,7 @@ wp.domReady(function () {
     innerBlocks: [['core/heading', {
       level: 3
     }], ['core/paragraph']],
-    isActive: blockAttributes => blockAttributes.className?.includes('mrw-card-block')
+    isActive: attrs => attrs.className?.includes('mrw-card-block')
   });
 });
 })();
