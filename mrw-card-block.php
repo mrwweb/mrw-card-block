@@ -7,7 +7,7 @@
  * Requires at least: 6.6
  * Requires PHP: 	7.0
  * Text Domain:     mrw-card-block
- * Version:         0.4.3
+ * Version:         0.5.0
  * Plugin URI: 		https://github.com/mrwweb/mrw-card-block
  *
  * @package         MRW_Card_Block
@@ -18,7 +18,7 @@ namespace MRW\CardBlock;
 require_once( 'github-updater/github-updater.php' );
 use WP_GitHub_Updater;
 
-define( 'MRW_CARD_BLOCK_VERSION', '0.4.3' );
+define( 'MRW_CARD_BLOCK_VERSION', '0.5.0' );
 
 add_filter( 'after_setup_theme', __NAMESPACE__ . '\register_block_styles' );
 function register_block_styles() {

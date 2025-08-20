@@ -16,6 +16,13 @@ A variation of the Media & Text block that creates a "Card" with stacked media a
 
 == Changelog ==
 
+= 0.5.0 (August 20, 2025) =
+
+- Don't show "Aspect Ratio" setting if "Crop to Fill" is false
+- Change "Original" to "Default" is Aspect Ratio setting to reflect that there will always be an aspect ratio applied if the "Crop to Fill" option is set
+- Fix media placeholder style error
+- Fix missing textdomain
+
 = 0.4.3 (December 16, 2024) =
 
 - Load Github updater on `admin_init` hook to prevent "`_load_textdomain_just_in_time` was called incorrectly" error introduced with WordPress 6.7
