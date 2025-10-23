@@ -7,7 +7,7 @@
  * Requires at least: 6.6
  * Requires PHP: 	7.0
  * Text Domain:     mrw-card-block
- * Version:         0.5.0
+ * Version:         0.6.0
  * Plugin URI: 		https://github.com/mrwweb/mrw-card-block
  *
  * @package         MRW_Card_Block
@@ -94,3 +94,20 @@ add_action( 'admin_init', function() {
 		new WP_GitHub_Updater($config);
 	}
 } );
+
+add_filter( 'after_setup_theme', __NAMESPACE__ . '\register_block_style_variation', 999 );
+/**
+ * Block styles
+ *
+ * @return void
+ */
+function register_block_style_variation() {
+	register_block_style(
+		'core/media-text',
+		[
+			'name'  => 'block-link',
+			'label' => __( 'Block Link', 'mrw-card-block' ),
+		]
+	);
+
+}
